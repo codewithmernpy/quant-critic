@@ -1,0 +1,18 @@
+data/cache/
+reports/
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+dist/
+build/
+.coverage
+htmlcov/
+user_strategies/*.json
+!user_strategies/examples/
+!user_strategies/examples/*.json
+
+# local run logs
+*.log

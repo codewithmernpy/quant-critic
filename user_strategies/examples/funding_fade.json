@@ -1,0 +1,43 @@
+{
+  "name": "funding_fade",
+  "description": "Example perpetual funding-rate fade: trailing funding z-score(90) < -2 and RSI(14) < 35 (mirrored for shorts).",
+  "long_rules": [
+    {
+      "left": {
+        "kind": "indicator",
+        "indicator": "funding_z",
+        "period": 90
+      },
+      "operator": "less_than",
+      "right": {
+        "kind": "number",
+        "value": -2.0
+      }
+    },
+    {
+      "left": {
+        "kind": "indicator",
+        "indicator": "rsi",
+        "period": 14
+      },
+      "operator": "less_than",
+      "right": {
+        "kind": "number",
+        "value": 35.0
+      }
+    }
+  ],
+  "short_rules": [],
+  "mirror_long_for_short": true,
+  "combine": "all",
+  "exit": {
+    "atr_period": 14,
+    "atr_stop_mult": 2.5,
+    "tp_r": 2.0,
+    "max_bars": 18,
+    "exit_rules": [],
+    "exit_combine": "any"
+  },
+  "notes": "Example specification shipped in user_strategies/examples/ (not a performance claim).",
+  "unsupported": []
+}

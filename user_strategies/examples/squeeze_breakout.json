@@ -1,0 +1,46 @@
+{
+  "name": "squeeze_breakout",
+  "description": "Example Bollinger squeeze breakout: trailing bandwidth percentile(20, 2.0, 120) < 20 and close crosses above upper band (mirrored for shorts).",
+  "long_rules": [
+    {
+      "left": {
+        "kind": "indicator",
+        "indicator": "bb_bw_pct",
+        "period": 20,
+        "std_dev": 2.0,
+        "lookback": 120
+      },
+      "operator": "less_than",
+      "right": {
+        "kind": "number",
+        "value": 20.0
+      }
+    },
+    {
+      "left": {
+        "kind": "indicator",
+        "indicator": "close"
+      },
+      "operator": "crosses_above",
+      "right": {
+        "kind": "indicator",
+        "indicator": "bb_upper",
+        "period": 20,
+        "std_dev": 2.0
+      }
+    }
+  ],
+  "short_rules": [],
+  "mirror_long_for_short": true,
+  "combine": "all",
+  "exit": {
+    "atr_period": 14,
+    "atr_stop_mult": 2.0,
+    "tp_r": 2.5,
+    "max_bars": 24,
+    "exit_rules": [],
+    "exit_combine": "any"
+  },
+  "notes": "Example specification shipped in user_strategies/examples/ (not a performance claim).",
+  "unsupported": []
+}
